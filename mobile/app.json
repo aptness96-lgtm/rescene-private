@@ -1,0 +1,25 @@
+{
+  "expo": {
+    "name": "RESCENE PRIVATE",
+    "slug": "rescene-private",
+    "scheme": "resceneprivate",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "android": {
+      "package": "com.rescene.privatecalendar",
+      "edgeToEdgeEnabled": true
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "일정 사진을 첨부하기 위해 사진 접근 권한이 필요합니다."
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {}
+    }
+  }
+}
