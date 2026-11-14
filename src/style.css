@@ -30,3 +30,12 @@
 .rangeEvent.continuesAfter{margin-right:0;border-radius:6px 0 0 6px}
 .rangeEvent.continuesBefore.continuesAfter{border-radius:0}
 @media(max-width:650px){.calendarWeek{min-height:74px;grid-template-rows:24px repeat(var(--lanes),24px) minmax(8px,1fr)}.weekDay{padding:3px}.rangeEvent{height:21px;font-size:9px;padding:2px 4px}}
+
+/* Keep the calendar behind dialogs and place bars below day numbers. */
+.overlay{z-index:1000}
+.calendarWeek{position:relative;isolation:isolate;overflow:hidden;grid-template-rows:30px repeat(var(--lanes),28px) minmax(12px,1fr);align-items:stretch}
+.weekDay{position:relative;z-index:0;min-height:0}
+.weekDay>span{position:relative;z-index:1}
+.rangeEvent{position:relative;z-index:2;align-self:center;justify-self:stretch;max-width:calc(100% - 4px);width:auto;box-sizing:border-box}
+.rangeEvent.continuesBefore,.rangeEvent.continuesAfter{max-width:100%}
+@media(max-width:650px){.calendarWeek{grid-template-rows:26px repeat(var(--lanes),26px) minmax(8px,1fr)}}
