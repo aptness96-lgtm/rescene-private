@@ -98,7 +98,8 @@ drop policy if exists "rescene images admin delete" on storage.objects;
 create policy "rescene images shared select" on storage.objects
  for select to authenticated using (
  bucket_id='event-images' and (select public.is_rescene_member())
- and (exists(select 1 from public.event_images i where i.storage_path=name)
+ and ((select public.is_rescene_admin()) and (storage.foldername(name))[1]=(select auth.uid())::text
+ or exists(select 1 from public.event_images i where i.storage_path=name)
  or exists(select 1 from public.events e where e.image_path=name))
  );
 create policy "rescene images admin insert" on storage.objects
