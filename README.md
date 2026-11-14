@@ -22,3 +22,11 @@
 
 ## 불필요한 설정 정리
 자동 수집 기능용으로 생성한 GitHub Actions Secrets (SUPABASE_SECRET_KEY, OWNER_USER_ID, OPENAI_API_KEY) 및 Supabase Edge Function Secrets (GITHUB_DISPATCH_TOKEN 등)는 더 이상 사용하지 않습니다. 생성했다면 각각 삭제하거나 GitHub 토큰을 폐기할 수 있습니다. Supabase의 candidates 테이블은 데이터 손실 방지를 위해 자동 삭제하지 않았습니다.
+
+## 선택 이미지 첨부 설정 (필수 1회)
+Supabase Dashboard > SQL Editor에서 [supabase/event-images-migration.sql](supabase/event-images-migration.sql)을 실행하세요. 이 SQL은 events.image_path 컬럼을 추가하고, 비공개 event-images Storage 버킷 및 사용자별 읽기/업로드/삭제 RLS 정책을 만듭니다. SQL 실행 전에는 새로운 웹 버전에서 일정 저장이 image_path 컬럼 누락으로 실패할 수 있습니다.
+
+- 공식 출처 URL과 이미지 첨부는 모두 선택 항목입니다.
+- JPG/PNG/WEBP/GIF, 최대 5MB. 이미지는 본인 계정 폴더에 비공개 저장하고 조회 시 1시간 유효한 서명 URL을 발급합니다.
+- 첨부 이미지가 있는 일정은 다가오는 일정 목록에 미리보기를 표시합니다.
+- UI 기본 강조 색상은 사용자가 제공한 #889CA5 블루그레이입니다.
