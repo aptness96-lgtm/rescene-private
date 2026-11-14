@@ -100,7 +100,7 @@ def analyze(title, body, key):
 
 def api(method, path, secret, **kwargs):
     url = os.environ["SUPABASE_URL"].rstrip("/") + "/rest/v1/" + path
-    headers = {"apikey": secret, "Authorization": "Bearer " + secret,
+    headers = {"apikey": secret,
                "Content-Type": "application/json", "Prefer": "return=minimal"}
     r = session.request(method, url, headers=headers, timeout=TIMEOUT, **kwargs)
     r.raise_for_status()
