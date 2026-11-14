@@ -12,3 +12,7 @@
 .detailFields a{color:#486777}
 .right article{cursor:pointer}
 @media(max-width:650px){.detailFields{grid-template-columns:65px minmax(0,1fr)}.detailTitle{font-size:21px}}
+
+.stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+.gallery{margin:16px 0}.galleryNav{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:8px 0}.galleryNav button{background:#e4ecef;color:#4e6c7a}.galleryThumbnails{display:flex;gap:8px;overflow-x:auto;padding:6px 0}.galleryThumbnails button{padding:3px;background:transparent;border:2px solid transparent;flex-shrink:0}.galleryThumbnails button.selected{border-color:#889ca5}.galleryThumbnails img{width:66px;height:66px;object-fit:cover;border-radius:7px;display:block}.editImageList{display:flex;gap:10px;flex-wrap:wrap}.editImageList>div{display:flex;flex-direction:column;gap:5px;width:100px}.editImageList img{width:100px;height:85px;object-fit:cover;border-radius:8px}.editImageList button{padding:5px}.editImageList small{color:#b33}
+@media(max-width:650px){.stats{grid-template-columns:repeat(3,minmax(0,1fr))}.stats>div{padding:9px}.stats strong{font-size:21px}}
