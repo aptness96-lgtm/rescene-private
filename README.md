@@ -42,3 +42,15 @@ GitHub Pages의 정적 코드와 로그인 화면은 공개될 수 있으나 Sup
 GitHub Actions의 `SUPABASE_URL`은 기존 `VITE_SUPABASE_URL` Repository Variable을 사용하며, 반드시 `https://프로젝트ID.supabase.co` 형식이어야 합니다. `/rest/v1`을 추가하지 마세요.
 
 보안: Supabase Secret key는 RLS를 우회할 수 있으므로 Actions Secret으로만 저장하고 로그에 출력하지 마세요. 이 워크플로는 본인 UID를 명시해 삽입합니다. 사이트의 직접 일정 등록 및 승인·거절 기능은 기존대로 유지됩니다.
+
+## 사이트의 '지금 공지 수집' 버튼 활성화
+
+버튼 UI와 Supabase Edge Function 코드는 저장소에 추가되었습니다. **Edge Function을 실제 Supabase 프로젝트에 배포해야 버튼이 동작합니다.** GitHub에 코드만 올려서는 Edge Function이 자동 배포되지 않습니다.
+
+1. GitHub에서 Fine-grained personal access token 생성: 대상 저장소 `aptness96-lgtm/rescene-private`만 선택, Repository permissions > **Actions: Read and write**. 만료일을 설정하고 토큰은 안전하게 보관하세요.
+2. Supabase Dashboard > Edge Functions > Secrets에 `GITHUB_DISPATCH_TOKEN` (위 GitHub 토큰), `OWNER_USER_ID` (본인 auth.users UID) 설정. `SUPABASE_URL`과 `SUPABASE_ANON_KEY`는 프로젝트에 기본 제공되는 경우 그대로 사용하세요. 이 토큰은 절대로 `VITE_` 환경변수에 등록하지 마세요.
+3. Supabase Edge Functions에서 `trigger-collect` 함수를 생성하고 `supabase/functions/trigger-collect/index.ts` 코드를 붙여넣어 Deploy. 또는 Supabase CLI에서 `supabase functions deploy trigger-collect` 실행. **JWT 검증을 비활성화하지 마세요.**
+4. GitHub Pages의 새 배포 완료 후 로그인해서 **지금 공지 수집** 버튼 클릭.
+5. GitHub Actions > Collect RESCENE notices에서 실행이 시작되는지 확인. 승인 대기함은 자동 실시간 갱신이 아니므로 수집 완료 후 새로고침하세요.
+
+버튼은 실행 완료를 기다리지 않고 GitHub에 실행을 **요청**합니다. GitHub Actions의 큐/수집 결과에 따라 공지가 늦게 표시되거나 수집되지 않을 수 있습니다.
