@@ -30,3 +30,12 @@ Supabase Dashboard > SQL Editor에서 [supabase/event-images-migration.sql](supa
 - JPG/PNG/WEBP/GIF, 최대 5MB. 이미지는 본인 계정 폴더에 비공개 저장하고 조회 시 1시간 유효한 서명 URL을 발급합니다.
 - 첨부 이미지가 있는 일정은 다가오는 일정 목록에 미리보기를 표시합니다.
 - UI 기본 강조 색상은 사용자가 제공한 #889CA5 블루그레이입니다.
+
+## 여러 사진 및 진행 중인 일정
+1. 기존 [supabase/event-images-migration.sql](supabase/event-images-migration.sql)이 아직 실행되지 않았다면 먼저 실행합니다.
+2. Supabase SQL Editor에서 [supabase/multiple-event-images.sql](supabase/multiple-event-images.sql)을 **한 번** 실행합니다. 이 작업은 기존 image_path 사진을 새 event_images 테이블로 연결하며 기존 파일은 삭제하지 않습니다.
+3. GitHub Pages 배포 완료 후 사진 여러 장을 첨부해 일정 저장/수정/상세보기 테스트를 진행합니다.
+4. 사진 최대 10장, 장당 5MB, JPG/PNG/WEBP/GIF. 비공개 Storage 버킷을 그대로 사용합니다.
+5. 현재 진행 중인 일정은 시작 <= 현재 시각 <= 종료이고 종료 시간이 입력된 일정만 해당합니다. 1분 간격으로 상태를 갱신합니다.
+
+**주의:** 새 SQL을 실행하기 전에는 일정 목록의 event_images 조회가 실패할 수 있습니다. 먼저 SQL을 적용하세요.
