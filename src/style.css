@@ -95,3 +95,5 @@ aside nav{margin-top:2px}
 header .eyebrow{margin-bottom:6px}
 header h1{font-size:clamp(24px,2.3vw,32px);letter-spacing:.035em}
 @media(max-width:650px){.sidebarBrand{margin:0;justify-content:flex-start}.sidebarBrand img{width:88px;border-radius:9px}aside{gap:10px}}
+
+.roleTag{display:inline-block;padding:4px 9px;margin:0 6px;border-radius:999px;background:#e3ecef;color:#4a6b78;font-size:11px;font-weight:700;white-space:nowrap}
