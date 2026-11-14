@@ -39,3 +39,51 @@
 .rangeEvent{position:relative;z-index:2;align-self:center;justify-self:stretch;max-width:calc(100% - 4px);width:auto;box-sizing:border-box}
 .rangeEvent.continuesBefore,.rangeEvent.continuesAfter{max-width:100%}
 @media(max-width:650px){.calendarWeek{grid-template-rows:26px repeat(var(--lanes),26px) minmax(8px,1fr)}}
+
+/* A+B refresh: airy minimal calendar, subtle category tones */
+.calendar{border:1px solid #e1e9ec;border-radius:14px;overflow:hidden;background:#fff}
+.weekdays{border:0;background:#f3f7f8}
+.weekday{border:0;background:transparent;color:#71858f;font-weight:650;padding:12px 4px}
+.calendarWeek{
+  border:0;border-top:1px solid #e6ecef;
+  grid-template-rows:34px repeat(var(--lanes),30px) minmax(20px,1fr);
+  min-height:112px;
+  background:#fff;
+}
+.weekDay{border-right:1px solid #edf1f3;border-bottom:0;padding:9px 10px;background:transparent;color:#455e69;font-weight:550;font-size:12px}
+.weekDay:last-of-type{border-right:0}
+.weekDay.muted{background:#fafbfc;color:#b5c1c7}
+.weekDay.today>span{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;margin:-4px 0 0 -4px;background:#889ca5;color:#fff;border-radius:50%;font-weight:700}
+.rangeEvent{
+  border:1px solid transparent;
+  border-left:3px solid var(--tone-border,#738f9e);
+  background:var(--tone-bg,#e3ebef);
+  color:var(--tone-text,#365768);
+  box-shadow:none;
+  border-radius:5px;
+  height:23px;
+  line-height:17px;
+  margin:0 3px;
+  padding:2px 8px;
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:-.15px;
+  transition:filter .12s ease,transform .12s ease;
+}
+.rangeEvent:hover{opacity:1;filter:brightness(.965);transform:translateY(-1px)}
+.rangeEvent:focus-visible{outline:2px solid #527584;outline-offset:1px}
+.rangeEvent.continuesBefore{border-left:0;border-radius:0 5px 5px 0;margin-left:0}
+.rangeEvent.continuesAfter{border-radius:5px 0 0 5px;margin-right:0}
+.rangeEvent.continuesBefore.continuesAfter{border-radius:0}
+.rangeEvent.tone-music{--tone-bg:#f3e5ed;--tone-text:#875570;--tone-border:#c28aa8}
+.rangeEvent.tone-fansign{--tone-bg:#deebf6;--tone-text:#426b8c;--tone-border:#8db1d0}
+.rangeEvent.tone-concert{--tone-bg:#e5efdf;--tone-text:#527750;--tone-border:#9ab997}
+.rangeEvent.tone-event{--tone-bg:#e3ecef;--tone-text:#4a6b78;--tone-border:#889ca5}
+.rangeEvent.tone-content{--tone-bg:#f2e9dd;--tone-text:#876e4f;--tone-border:#c5aa83}
+.rangeEvent.tone-other{--tone-bg:#eceaf1;--tone-text:#6e6582;--tone-border:#aaa0bc}
+@media(max-width:650px){
+  .weekday{padding:9px 1px;font-size:11px}
+  .calendarWeek{min-height:90px;grid-template-rows:30px repeat(var(--lanes),26px) minmax(12px,1fr)}
+  .weekDay{padding:6px 5px;font-size:11px}
+  .rangeEvent{height:21px;line-height:16px;font-size:10px;padding:1px 4px;margin:0 2px}
+}
