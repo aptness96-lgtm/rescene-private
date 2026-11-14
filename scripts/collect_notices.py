@@ -141,9 +141,7 @@ def main():
             payload = {"user_id": owner, "title": info["title"],
                        "notice_text": (info["summary"] + "\n\n[공식 공지 발췌]\n" + body)[:7000],
                        "source_url": link, "proposed_at": info["proposed_at"], "status": "pending"}
-            api("POST", "candidates?on_conflict=user_id%2Csource_url", secret,
-                headers={"Prefer": "resolution=ignore-duplicates,return=minimal"},
-                json=payload)
+            api("POST", "candidates", secret, json=payload)
             created += 1
         except (requests.RequestException, ValueError, KeyError) as e:
             logging.warning("Skipped article (%s)", type(e).__name__)
