@@ -44,10 +44,8 @@ def discover():
             title = a.get_text(" ", strip=True)
             found[url] = title[:200]
     # Some Next.js pages serialize links in JSON rather than anchors.
-    for m in re.finditer(r'(?:https?:\\?/\\?/artist\\.mnetplus\\.world)?\\?/main\\?/stg\\?/rescene-official\\?/contents\\?/[a-zA-Z0-9]+', str(soup)):
-        url = m.group(0).replace("\\/", "/")
-        if url.startswith("/"):
-            url = BASE + url
+    for m in re.finditer(r'/main(?:\\/|/)stg(?:\\/|/)rescene-official(?:\\/|/)contents(?:\\/|/)[a-zA-Z0-9]+', str(soup)):
+        url = BASE + m.group(0).replace("\\/", "/")
         if safe_official(url):
             found.setdefault(url, "")
     return list(found.items())[:MAX_ITEMS]
